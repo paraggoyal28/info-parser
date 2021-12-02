@@ -1,0 +1,11 @@
+#form {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px;
+}
+#rssfeedurl {
+    flex: 1;
+}
+#rssfeedbutton {
+    margin-left: 10px;
+}
