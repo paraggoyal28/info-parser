@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from rssitem import RssItem
+from RssItem import RssItem
 
 
 class RssReader:
@@ -28,14 +28,16 @@ class RssReader:
                   " cannot be parsed. Please try different url")
             raise SystemExit(error)
 
-    def get_feeds(self):
+    def fetch_feeds(self):
         """Get the rss feed items"""
+
         items = self.parse_data_from_rss_xml()
         rss_items = []
         for item in items:
-            print(item)
-            rss_items.append(RssItem(item.title and item.title.text,
-                                     item.description and item.description.text,
-                                     item.link and item.link.text,
-                                     item.pubDate and item.pubDate.text))
+            if item.title and item.description and item.link and item.pubDate:
+                rss_items.append(RssItem(item.title and item.title.text,
+                                         item.description and item.description.text,
+                                         item.link and item.link.text,
+                                         item.pubDate and item.pubDate.text))
+
         return rss_items

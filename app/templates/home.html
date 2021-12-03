@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="home">INFO PARSER</a>
+            <a class="navbar-brand" href="/home">INFO PARSER</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="add">Add RSS Feed</a>
+                        <a class="nav-link" aria-current="page" href="/add">Add RSS Feed</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="display.html">Current RSS Feeds</a>
+                        <a class="nav-link" href="/urls">Current RSS Feeds</a>
                     </li>
                 </ul>
             </div>
@@ -37,12 +37,10 @@
     </nav>
 
     {% for feed in feeds %}
-    {% if feed.title and feed.description and feed.link and feed.pubDate %}
     <h1 class="text">{{feed.title}}</h1>
     <p class="text text-secondary">{{feed.description}}</p>
     <a class="text text-primary">{{feed.link}}</a>
     <p class="text">{{feed.pubDate}}</p>
-    {% endif %}
     {% endfor %}
 
 
