@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-from utils.Util import Util
 from feedparser import FeedParser
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
@@ -72,8 +71,7 @@ def add_url():
                 session['url'] = url.url
                 return redirect(url_for('home'))
             rssParser = FeedParser(feed_url)
-            util = Util(feed_url)
-            util.checkValidUrl()
+            rssParser.checkValidUrl()
             rss_url = RSSUrl(feed_url)
             db.session.add(rss_url)
             feeds = rssParser.fetch_feeds()
