@@ -9,3 +9,21 @@
 #rssfeedbutton {
     margin-left: 10px;
 }
+
+#urlSpan{
+    cursor:pointer;
+}
+
+#feed {
+    margin-bottom: 10px;
+}
+
+#feedbody {
+    color:black;
+    text-decoration: none;
+}
+
+#feedtitle {
+    display: flex;
+    justify-content: space-between;
+}

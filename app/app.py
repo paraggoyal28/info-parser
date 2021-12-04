@@ -56,11 +56,9 @@ db.session.commit()
 @app.route("/home")
 def home():
     feeds = []
-    print(session['url'])
-    if session['url'] is not None:
+    if 'url' in session and session['url'] is not None:
         url = RSSUrl.query.filter_by(url=session['url']).first()
         feeds = url and url.rssitems
-    print(feeds)
     return render_template('home.html', feeds=feeds or [])
 
 
@@ -93,11 +91,20 @@ def add_url():
         return render_template('form.html', error=None)
 
 
-@app.route("/urls", methods=['GET'])
+@app.route("/urls", methods=['GET', 'POST'])
 def fetch_urls():
-    urls = RSSUrl.query.all()
-    print(urls)
-    return render_template('display.html', urls=urls)
+    if request.method == 'POST':
+        try:
+            feed_url = request.form['url']
+            url = RSSUrl.query.filter_by(url=feed_url).first()
+            if(url is not None):
+                session['url'] = url.url
+                return redirect(url_for('home'))
+        except Exception:
+            return redirect(url_for('home'))
+    else:
+        urls = RSSUrl.query.all()
+        return render_template('display.html', urls=urls)
 
 
 if __name__ == "__main__":
